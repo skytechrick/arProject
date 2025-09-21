@@ -832,7 +832,10 @@ export default function MarketplacePage() {
 
                 </div> */}
 
-                <div className="flex justify-center mb-8">
+                <div className="flex justify-between mb-8">
+                    <div>
+
+                    </div>
                     <div className="bg-gray-700/50 border border-gray-600 p-1 rounded-lg flex space-x-1">
                         <button
                             onClick={() => setActiveView('product')}
@@ -846,9 +849,12 @@ export default function MarketplacePage() {
                         >
                             Creator
                         </button>
+                    </div>
+                    <div>
+
                         <button
                             onClick={() => setActiveView('lens')}
-                            className={`px-16 py-2 rounded-md text-sm font-semibold ${activeView === 'lens' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
+                            className={`px-16 py-2 rounded-md text-sm font-semibold ${activeView === 'lens' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'} border border-gray-500 `}
                         >
                             Lens
                         </button>
