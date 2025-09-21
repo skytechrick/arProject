@@ -121,6 +121,98 @@ const categories = [
     "Fantasy",
 ]
 
+type Creator = {
+    id: number;
+    name: string;
+    shopName: string;
+    avatarUrl: string;
+    followers: number;
+    products: number;
+    rating: number;
+    reviewCount: number;
+    tags: string[];
+    isFeatured: boolean;
+};
+
+const creatorsData: Creator[] = [
+    { id: 1, name: 'shyam lila', shopName: 'Shop Name', avatarUrl: 'https://placehold.co/100x100/e2e8f0/e2e8f0', followers: 567, products: 1200, rating: 4.8, reviewCount: 234, tags: ['jute', 'bamboo'], isFeatured: true },
+    { id: 2, name: 'Alex Chen', shopName: 'Shop Name', avatarUrl: 'https://placehold.co/100x100/e2e8f0/e2e8f0', followers: 980, products: 850, rating: 4.9, reviewCount: 512, tags: ['helmet', 'model'], isFeatured: true },
+    { id: 3, name: 'Maria Garcia', shopName: 'Shop Name', avatarUrl: 'https://placehold.co/100x100/e2e8f0/e2e8f0', followers: 1200, products: 2300, rating: 4.7, reviewCount: 890, tags: ['jute', 'bamboo'], isFeatured: true },
+    { id: 4, name: 'David Kim', shopName: 'Shop Name', avatarUrl: 'https://placehold.co/100x100/e2e8f0/e2e8f0', followers: 340, products: 500, rating: 4.6, reviewCount: 150, tags: ['model', 'helmet'], isFeatured: true },
+    { id: 5, name: 'shyam lila', shopName: 'Shop Name', avatarUrl: 'https://placehold.co/100x100/e2e8f0/e2e8f0', followers: 567, products: 1200, rating: 4.8, reviewCount: 234, tags: ['container'], isFeatured: true },
+    { id: 6, name: 'Alex Chen', shopName: 'Shop Name', avatarUrl: 'https://placehold.co/100x100/e2e8f0/e2e8f0', followers: 980, products: 850, rating: 4.9, reviewCount: 512, tags: ['helmet', 'model'], isFeatured: false },
+    { id: 7, name: 'Maria Garcia', shopName: 'Shop Name', avatarUrl: 'https://placehold.co/100x100/e2e8f0/e2e8f0', followers: 1200, products: 2300, rating: 4.7, reviewCount: 890, tags: ['jute', 'bamboo'], isFeatured: true },
+    { id: 8, name: 'David Kim', shopName: 'Shop Name', avatarUrl: 'https://placehold.co/100x100/e2e8f0/e2e8f0', followers: 340, products: 500, rating: 4.6, reviewCount: 150, tags: ['container'], isFeatured: true },
+];
+
+const CreatorCard: React.FC<{ creator: Creator }> = ({ creator }) => (
+    <div className="bg-slate-900 rounded-xl overflow-hidden shadow-lg border border-gray-600 bg-slate-800/50">
+        <div className="relative overflow-hidden flex-shrink-0">
+            <Image
+                src={creator.avatarUrl || "/placeholder.svg"}
+                alt={creator.name}
+                width={300}
+                height={300}
+                className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+            {/* Action Buttons */}
+            <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Button size="sm" variant="secondary" className="h-8 w-8 p-0">
+                    <Heart className="w-4 h-4" />
+                </Button>
+                <Button size="sm" variant="secondary" className="h-8 w-8 p-0">
+                    <Eye className="w-4 h-4" />
+                </Button>
+            </div>
+
+            {/* Featured Badge */}
+            {creator.isFeatured && (
+                <Badge className="absolute top-3 left-3 bg-gradient-to-r from-purple-600 to-cyan-400 text-white">
+                    Featured
+                </Badge>
+            )}
+
+            {/* Price Badge */}
+            {/* <Badge className="absolute bottom-3 right-3 bg-black/80 text-white">
+                {creator. === 0 ? "Free" : `$${model.price}`}
+            </Badge> */}
+        </div>
+
+        {/* <img src={creator.avatarUrl} alt={creator.name} className="w-20 h-20 rounded-full border-4 border-gray-700 m-3 mb-0" /> */}
+        <div className="p-4">
+            <h3 className="font-bold text-base text-white">{creator.shopName}</h3>
+            <p className="text-xs text-gray-400 mb-2">by {creator.name}</p>
+            <div className="flex flex-wrap gap-2 mb-3">
+                {creator.tags.map(tag => <span key={tag} className="text-xs bg-gray-600 text-gray-300 px-2 py-1 rounded-full">{tag}</span>)}
+            </div>
+            <div className="flex items-center justify-between text-sm text-gray-400 mb-4 text-xs">
+                <div className="flex items-center">
+
+                    <Star size={16} className="text-yellow-400 mr-1" fill="currentColor" />
+                    <span className="text-white font-bold">{creator.rating}</span>
+                    <span className="ml-1">({creator.reviewCount})</span>
+                </div>
+                <div>
+
+                    {/* <span className="mx-1">·</span> */}
+                    <span>{creator.followers} Followers</span>
+                    <span className="mx-[3px]">·</span>
+                    <span>{creator.products} Products</span>
+                </div>
+            </div>
+            <div className="text-right">
+                <button className="bg-purple-600 hover:bg-purple-700 text-white py-1 px-3 rounded-lg inline-block">
+                    Follow
+                </button>
+            </div>
+        </div>
+    </div>
+);
+
 export default function MarketplacePage() {
     const [models, setModels] = useState(modelsDummy);
     const [searchQuery, setSearchQuery] = useState("")
@@ -131,6 +223,7 @@ export default function MarketplacePage() {
 
     const [activeBanner, setActiveBanner] = useState(1);
     const [bannerTimer, setBannerTimer] = useState(1);
+    const [activeView, setActiveView] = useState<'creator' | 'product'>('product');
 
     setTimeout(() => {
         bannerTimer == bannerImages.length ? setBannerTimer(1) : setBannerTimer(bannerTimer + 1);
@@ -331,17 +424,6 @@ export default function MarketplacePage() {
                 </motion.div>
 
 
-
-                {/* Results */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="mb-6"
-                >
-                    <p className="text-slate-400">Showing {filteredModels.length} results</p>
-                </motion.div>
-
                 {/* Models Grid */}
                 {/* <div
                     className={`relative top-0 grid gap-6 ${viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1"
@@ -463,7 +545,62 @@ export default function MarketplacePage() {
                     ))}
 
                 </div> */}
-                <FlipCard filteredModels={filteredModels} />
+
+                <div className="flex justify-center mb-8">
+                    <div className="bg-gray-700/50 border border-gray-600 p-1 rounded-lg flex space-x-1">
+                        <button
+                            onClick={() => setActiveView('product')}
+                            className={`px-16 py-2 rounded-md text-sm font-semibold ${activeView === 'product' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
+                        >
+                            Product
+                        </button>
+                        <button
+                            onClick={() => setActiveView('creator')}
+                            className={`px-16 py-2 rounded-md text-sm font-semibold ${activeView === 'creator' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
+                        >
+                            Creator
+                        </button>
+                    </div>
+                </div>
+
+                {/* Results */}
+
+                {
+                    activeView === 'product' ? (
+
+                        <>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.6, delay: 0.4 }}
+                                className="mb-6"
+                            >
+                                <p className="text-slate-400">Showing {filteredModels.length} results</p>
+                            </motion.div>
+
+                            <FlipCard filteredModels={filteredModels} />
+                        </>
+                    ) : (
+                        <>
+
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.6, delay: 0.4 }}
+                                className="mb-6"
+                            >
+                                <p className="text-slate-400">Showing {creatorsData.length} results</p>
+                            </motion.div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                {
+                                    creatorsData.map(creator => <CreatorCard key={creator.id} creator={creator} />)
+                                }
+                            </div>
+                        </>
+
+                    )
+
+                }
 
                 {/* Load More */}
                 <div className="text-center mt-12">

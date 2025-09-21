@@ -30,6 +30,7 @@ const Sidebar = ({ activeView, setActiveView }) => {
         { id: 'artisan-profile', label: 'Artisan Profile', icon: <Lightbulb size={20} /> },
         { id: 'buyer-chats', label: 'Buyer Chats', icon: <MessageCircle size={20} /> },
         { id: 'marketing', label: 'Marketing Tools', icon: <Gem size={20} /> },
+        { id: '3darvr', label: '3D(AR/VR)', icon: <BarChart2 size={20} /> },
         { id: 'setting', label: 'Setting', icon: <Settings size={20} /> },
     ];
 
