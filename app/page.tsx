@@ -22,7 +22,7 @@ const bannerImages = [
     },
     {
         id: 3,
-        src: "banner3.png",
+        src: "banner4.jpeg",
     },
 
 ]
@@ -464,7 +464,7 @@ const CreatorCard: React.FC<{ creator: Creator }> = ({ creator }) => (
 
             {/* Price Badge */}
             {/* <Badge className="absolute bottom-3 right-3 bg-black/80 text-white">
-                {creator. === 0 ? "Free" : `$${model.price}`}
+                {creator. === 0 ? "Free" : `₹₹{model.price}`}
             </Badge> */}
         </div>
 
@@ -693,7 +693,7 @@ export default function MarketplacePage() {
                                     <img
                                         key={banner.id}
                                         src={banner.src}
-                                        alt={`Banner ${banner.id}`}
+                                        alt={`Banner ₹{banner.id}`}
                                         className="mx-auto rounded-lg shadow-lg w-full h-48 object-cover"
                                     />
                                 ))
@@ -712,7 +712,7 @@ export default function MarketplacePage() {
 
                 {/* Models Grid */}
                 {/* <div
-                    className={`relative top-0 grid gap-6 ${viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1"
+                    className={`relative top-0 grid gap-6 ₹{viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" : "grid-cols-1"
                         }`}
                 >
                     {filteredModels.map((model, index) => (
@@ -752,7 +752,7 @@ export default function MarketplacePage() {
                                         )}
 
                                         <Badge className="absolute bottom-3 right-3 bg-black/80 text-white">
-                                            {model.price === 0 ? "Free" : `$${model.price}`}
+                                            {model.price === 0 ? "Free" : `₹₹{model.price}`}
                                         </Badge>
                                     </div>
 
@@ -786,9 +786,9 @@ export default function MarketplacePage() {
                                                     <span className="font-bold text-green-400">Free</span>
                                                 ) : (
                                                     <div className="flex items-center gap-2">
-                                                        <span className="font-bold text-yellow-400">${model.price}</span>
+                                                        <span className="font-bold text-yellow-400">₹{model.price}</span>
                                                         {model.originalPrice && (
-                                                            <span className="text-xs text-slate-500 line-through">${model.originalPrice}</span>
+                                                            <span className="text-xs text-slate-500 line-through">₹{model.originalPrice}</span>
                                                         )}
                                                     </div>
                                                 )}
@@ -839,13 +839,13 @@ export default function MarketplacePage() {
                     <div className="bg-gray-700/50 border border-gray-600 p-1 rounded-lg flex space-x-1">
                         <button
                             onClick={() => setActiveView('product')}
-                            className={`px-16 py-2 rounded-md text-sm font-semibold ${activeView === 'product' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
+                            className={`px-16 py-2 rounded-md text-sm font-semibold ₹{activeView === 'product' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
                         >
                             Product
                         </button>
                         <button
                             onClick={() => setActiveView('creator')}
-                            className={`px-16 py-2 rounded-md text-sm font-semibold ${activeView === 'creator' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
+                            className={`px-16 py-2 rounded-md text-sm font-semibold ₹{activeView === 'creator' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
                         >
                             Creator
                         </button>
@@ -854,7 +854,7 @@ export default function MarketplacePage() {
 
                         <button
                             onClick={() => setActiveView('lens')}
-                            className={`px-16 py-2 rounded-md text-sm font-semibold ${activeView === 'lens' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'} border border-gray-500 `}
+                            className={`px-16 py-2 rounded-md text-sm font-semibold ₹{activeView === 'lens' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'} border border-gray-500 `}
                         >
                             Lens
                         </button>

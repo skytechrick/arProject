@@ -309,7 +309,7 @@ const ModelCards: React.FC<ModelCardsProps> = ({ filteredModels }) => {
 
                                         {/* Price Badge */}
                                         <Badge className="absolute bottom-3 right-3 bg-black/80 text-white">
-                                            {model.price === 0 ? "Free" : `$${model.price}`}
+                                            {model.price === 0 ? "Free" : `₹${model.price}`}
                                         </Badge>
                                     </div>
 
@@ -346,9 +346,9 @@ const ModelCards: React.FC<ModelCardsProps> = ({ filteredModels }) => {
                                                     <span className="font-bold text-green-400">Free</span>
                                                 ) : (
                                                     <div className="flex items-center gap-2">
-                                                        <span className="font-bold text-yellow-400">${model.price}</span>
+                                                        <span className="font-bold text-yellow-400">₹{model.price}</span>
                                                         {model.originalPrice && (
-                                                            <span className="text-xs text-slate-500 line-through">${model.originalPrice}</span>
+                                                            <span className="text-xs text-slate-500 line-through">₹{model.originalPrice}</span>
                                                         )}
                                                     </div>
                                                 )}
