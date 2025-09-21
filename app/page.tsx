@@ -509,7 +509,7 @@ export default function MarketplacePage() {
 
     const [activeBanner, setActiveBanner] = useState(1);
     const [bannerTimer, setBannerTimer] = useState(1);
-    const [activeView, setActiveView] = useState<'creator' | 'product'>('product');
+    const [activeView, setActiveView] = useState<'creator' | 'product' | 'lens'>('product');
 
     setTimeout(() => {
         bannerTimer == bannerImages.length ? setBannerTimer(1) : setBannerTimer(bannerTimer + 1);
@@ -846,6 +846,12 @@ export default function MarketplacePage() {
                         >
                             Creator
                         </button>
+                        <button
+                            onClick={() => setActiveView('lens')}
+                            className={`px-16 py-2 rounded-md text-sm font-semibold ${activeView === 'lens' ? 'bg-purple-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
+                        >
+                            Lens
+                        </button>
                     </div>
                 </div>
 
@@ -866,9 +872,8 @@ export default function MarketplacePage() {
 
                             <FlipCard filteredModels={filteredModels} />
                         </>
-                    ) : (
+                    ) : activeView === 'creator' ? (
                         <>
-
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -884,6 +889,11 @@ export default function MarketplacePage() {
                             </div>
                         </>
 
+                    ) : (
+                        <div className="text-center py-20">
+                            <h2 className="text-2xl font-bold text-white mb-4">AR/VR Lenses Coming Soon!</h2>
+                            <p className="text-slate-400">We're working hard to bring you an exciting collection of AR/VR lenses. Stay tuned!</p>
+                        </div>
                     )
 
                 }
